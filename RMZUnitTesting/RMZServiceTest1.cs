@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using WebApplication1.Interfaces.Helper;
 using WebApplication1.Interfaces.ServiceInterface;
 using WebApplication1.Model;
+using WebApplication1.Model.DataModel;
 using WebApplication1.Services;
 using Xunit;
 
@@ -33,10 +34,10 @@ namespace RMZUnitTesting
 
 
             //Act
-            int adddata = (int)await _rms.facilityModels("RMZ");
+            int addata = (int)await _rms.facilityModels("RMZ");
 
             //Assert
-            Assert.Equal(adddata, 55);
+            Assert.Equal(addata, 55);
         }
 
         [Fact]
@@ -96,8 +97,8 @@ namespace RMZUnitTesting
             var data = new DataHelperInterface()
             {
                 Type = "#1",
-                startTime = DateTime.ParseExact("30/01/2022", "dd/MM/yyyy", null),
-                endTime = DateTime.ParseExact("30/10/2022", "dd/MM/yyyy", null),
+                startTime = DateTime.ParseExact("01/01/2022", "dd/MM/yyyy", null),
+                endTime = DateTime.ParseExact("01/10/2022", "dd/MM/yyyy", null),
                 meterType = "Electric",
                 cost = 2003
             };
@@ -106,12 +107,13 @@ namespace RMZUnitTesting
               Task.FromResult(dataFacility));
 
             //Act 
-            var values = await _rms.Facility(1, DateTime.ParseExact("30/01/2022", "dd/MM/yyyy", null), DateTime.ParseExact("30/10/2022", "dd/MM/yyyy", null));
+            var values = await _rms.Facility(1, DateTime.ParseExact("01/01/2022", "dd/MM/yyyy", null), DateTime.ParseExact("01/10/2022", "dd/MM/yyyy", null));
 
             //Assert
             Assert.Equal(values, dataFacility);
 
 
         }
+
     }
 }
